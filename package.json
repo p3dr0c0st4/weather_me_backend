@@ -1,0 +1,20 @@
+{
+  "name": "weather-me-backend",
+  "version": "1.0.0",
+  "description": "backend API for Weather data",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/p3dr0c0st4/weather_me_backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/p3dr0c0st4/weather_me_backend/issues"
+  },
+  "homepage": "https://github.com/p3dr0c0st4/weather_me_backend#readme"
+}
