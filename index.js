@@ -1,16 +1,25 @@
 
-/* const express = require('express');
+const express = require('express');
+const routesV1 = require('./api/v1');
 const app = express();
+// const db = require('./mongodb');
 
-const PORT = 3001;
+const PORT = 3000;
 
-
-db.on('error', (error) => console.log(error));
+const initDB = () => {
+  //Initialize DB
+};
+const x = { a: 1 };
+x.a = Date();
 
 app.use(express.json());
-const routes = require('./api/v1');
+app.use('/api/v1', routesV1);
+app.get('/ping', (req, res) => {
+  res.json({ success: true });
+});
 
-app.use('/', routes);
+initDB();
 
-app.listen(PORT, () =>{'Listening on port 3001'}); */
-
+app.listen(PORT, () => {
+  console.log('Listening on port 3001');
+});
