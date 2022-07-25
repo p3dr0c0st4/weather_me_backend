@@ -9,18 +9,19 @@ const sensorsSchema = require('../schemas/sensors-schema');
 const locationSchema = require('../schemas/location-schema');
 
 
-router.get("api/v1/sensors/:id/history", async (req, res) =>{
-    try {
+router.get("/sensors/:id/history", async (req, res) =>{
+    res.send('Hello world');
+    /* try {
         const temperatureHistory = await temperatureSchema.find(location)
         const humidityHistory = await humiditySchema.find()
         res.json(temperatureHistory)
         res.json(humidityHistory)
     } catch{
         res.status(500).json({message: err.message})
-    }
+    } */
 });
-
-router.post("api/v1/sensors/:id/history/temperature", async (req, res) =>{
+/* 
+router.post("/sensors/:id/history/temperature", async (req, res) =>{
     try {
         const temperatureHistory = await temperatureSchema.find()
     } catch{
@@ -28,10 +29,10 @@ router.post("api/v1/sensors/:id/history/temperature", async (req, res) =>{
     }
 });
 
-router.post("api/v1/sensors/:id/history/humidity",async (req, res) =>{
+router.post("/sensors/:id/history/humidity",async (req, res) =>{
     req.send({
 
     });
 })
-
+ */
 module.exports = router;
