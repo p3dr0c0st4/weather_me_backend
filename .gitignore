@@ -1,3 +1,6 @@
+#.env File (routes testing)
+.env
+
 # Logs
 logs
 *.log
