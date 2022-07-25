@@ -1,6 +1,5 @@
-//TODO: localhost:3001/api/ping -> "pong"  ###DONE###
-import { db } from './mongodb';
-const express = require('express');
+
+/* const express = require('express');
 const app = express();
 
 const PORT = 3001;
@@ -13,5 +12,5 @@ const routes = require('./api/v1');
 
 app.use('/', routes);
 
-app.listen(PORT, () =>{'Listening on port 3001'});
+app.listen(PORT, () =>{'Listening on port 3001'}); */
 
