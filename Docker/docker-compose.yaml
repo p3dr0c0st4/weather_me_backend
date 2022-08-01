@@ -4,15 +4,19 @@ services:
 
   mongo:
     image: mongo
-    restart: always
+    restart: unless-stopped
     ports:
       - 27019:27017
     volumes:
       - ~/apps/mongo:/data/db
-  mongo-dev:
-    image: mongo
-    restart: always
+  backend:
+    image: weathermebackend:latest 
+    restart: unless-stopped
+    build:
+      context: ../
+      dockerfile: ./Dockerfile
+      target: backend
     ports:
-      - 27018:27017
-    volumes:
-      - ~/apps/mongodev:/data/db
+      - 3000:3000
+    depends_on:
+      - mongo

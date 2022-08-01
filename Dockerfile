@@ -7,3 +7,4 @@ CMD [ "node", "index.js" ]
 
 #docker build . -t weathermebackend:latest
 #docker run -p 3000:3000 -d weathermebackend:latest
+#docker system prune
