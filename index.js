@@ -9,8 +9,6 @@ const PORT = 3000;
 const initDB = () => {
   //Initialize DB
 };
-const x = { a: 1 };
-x.a = Date();
 
 app.use(express.json());
 app.use('/api/v1', routesV1);
@@ -21,5 +19,5 @@ app.get('/ping', (req, res) => {
 initDB();
 
 app.listen(PORT, () => {
-  console.log('Listening on port 3001');
+  console.log(`Listening on port ${PORT}`);
 });
