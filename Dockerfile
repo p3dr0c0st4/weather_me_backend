@@ -1,6 +1,6 @@
 FROM node:16-alpine as backend
 WORKDIR /app
-COPY . .
+COPY /build .
 RUN yarn
 EXPOSE 3000
 CMD [ "node", "index.js" ]
