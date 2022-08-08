@@ -23,6 +23,10 @@ type TemperatureRespType = {
   success: boolean;
   data: any;
 };
+interface ITemperatureResp {
+  success: boolean;
+  data: any;
+}
 
 router.post(
   '/sensors/temperature',
@@ -30,6 +34,10 @@ router.post(
     //get sensor data from body
     //add data from body to temperature DB
     //return success
+    const a: ITemperatureResp = {
+      success: false,
+      data: [],
+    };
     if (!!true) {
       console.log('go');
     }
