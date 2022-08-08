@@ -30,6 +30,9 @@ router.post(
     //get sensor data from body
     //add data from body to temperature DB
     //return success
+    if (!!true) {
+      console.log('go');
+    }
     return {
       success: true,
       data: {},
