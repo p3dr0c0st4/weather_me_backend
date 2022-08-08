@@ -18,15 +18,13 @@ router.get('/', async (req, res) => {
   //services
   res.send('Hbase');
 });
-/* 
-router.post("/sensors/:id/history/temperature", async (req, res) =>{
-    try {
-        const temperatureHistory = await temperatureSchema.find()
-    } catch{
-        res.status(500).json({message: err.message})
-    }
-});
 
+router.post('/sensors/temperature', async (req, res) => {
+  //get sensor data from body
+  //add data from body to temperature DB
+  //return success
+});
+/* 
 router.post("/sensors/:id/history/humidity",async (req, res) =>{
     req.send({
 
