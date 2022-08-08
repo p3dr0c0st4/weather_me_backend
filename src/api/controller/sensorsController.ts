@@ -1,4 +1,6 @@
-const router = require('express').Router();
+import express from 'express';
+const router = express.Router();
+
 //sensors
 router.get('/:id/history', async (req, res) => {
   //services
@@ -31,4 +33,4 @@ router.post("/sensors/:id/history/humidity",async (req, res) =>{
     });
 })
  */
-module.exports = router;
+export default router;

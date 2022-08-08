@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const sensors = mongoose.Schema({
+import { Schema, model } from 'mongoose';
+const sensors = new Schema({
   guid: {
     type: String,
     required: true,
@@ -14,4 +14,4 @@ const sensors = mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('sensors', sensors);
+export default model('sensors', sensors);

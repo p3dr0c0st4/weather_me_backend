@@ -1,8 +1,8 @@
 require('dotenv').config();
-const express = require('express');
-const routesV1 = require('./api/v1');
+import express from 'express';
+import routesV1 from './api/v1';
 const app = express();
-const db = require('./infra/db/implementation/mongodb/mongodb');
+import db from './infra/db/implementation/mongodb/mongodb';
 
 const PORT = 3000;
 
