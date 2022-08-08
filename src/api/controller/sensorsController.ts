@@ -19,11 +19,23 @@ router.get('/', async (req, res) => {
   res.send('Hbase');
 });
 
-router.post('/sensors/temperature', async (req, res) => {
-  //get sensor data from body
-  //add data from body to temperature DB
-  //return success
-});
+type TemperatureRespType = {
+  success: boolean;
+  data: any;
+};
+
+router.post(
+  '/sensors/temperature',
+  async (req, res): Promise<TemperatureRespType> => {
+    //get sensor data from body
+    //add data from body to temperature DB
+    //return success
+    return {
+      success: true,
+      data: {},
+    };
+  }
+);
 /* 
 router.post("/sensors/:id/history/humidity",async (req, res) =>{
     req.send({
