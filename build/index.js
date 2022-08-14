@@ -7,7 +7,7 @@ require('dotenv').config();
 const express_1 = __importDefault(require("express"));
 const v1_1 = __importDefault(require("./api/v1"));
 const app = (0, express_1.default)();
-const mongodb_1 = __importDefault(require("@db/implementation/mongodb/mongodb"));
+const mongodb_1 = __importDefault(require("./infra/db/implementation/mongodb/mongodb"));
 const PORT = 3000;
 const initDB = () => {
     (0, mongodb_1.default)();
