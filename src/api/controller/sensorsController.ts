@@ -1,57 +1,32 @@
 import express from 'express';
 const router = express.Router();
+import temperatureControler from 'src/api/controller/temperatureSensor';
 
+router.use('/temperature', temperatureControler)
+
+//Temperature controlers  --> WIP (structure test)
+/* router.get('temperature/:id', temperatureGet);
+router.post('temperature/', temperaturePost);
+router.patch('temperature/:id', temperaturePatch);
+router.delete('temperature/:id', temperatureDelete); */
+
+//Humidity controlers  --> WIP (structure test)
+/* router.get('humidity/:id', humidityGet);
+router.post('humidity/', humidityPost);
+router.patch('humidity/:id', humidityPatch);
+router.delete('humidity/:id', humidityDelete); */
+
+//Logic moved to humiditySensors and temperatureSensors
+
+// router.get('/temperature
 //sensors
-router.get('/:id/history', async (req, res) => {
-  //services
-  res.send('Hello world');
-  /* try {
-        const temperatureHistory = await temperatureSchema.find(location)
-        const humidityHistory = await humiditySchema.find()
-        res.json(temperatureHistory)
-        res.json(humidityHistory)
-    } catch{
-        res.status(500).json({message: err.message})
-    } */
-});
-router.get('/', async (req, res) => {
-  //services
-  res.send('Hbase');
-});
 
-type TemperatureRespType = {
-  success: boolean;
-  data: any;
-};
-interface ITemperatureResp {
-  success: boolean;
-  data: any;
-}
 
-router.post(
-  '/sensors/temperature',
-  async (req, res): Promise<TemperatureRespType> => {
+
+  //services
+
     //get sensor data from body
     //add data from body to temperature DB
     //return success
-    const a: ITemperatureResp = {
-      success: false,
-      data: [],
-    };
-    if (!!true) {
-      console.log('go');
-    }
-    return {
-      success: true,
-      data: {},
-    };
-  }
-);
-/* 
-router.post("/sensors/:id/history/humidity",async (req, res) =>{
-    req.send({
 
-    });
-})
- */
 export default router;
