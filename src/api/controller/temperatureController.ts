@@ -2,6 +2,9 @@ import express from 'express';
 const router = express.Router();
 import {TemperatureRespType} from 'src/api/types/temperatureSensor';
 
+//Q&A to Pedro
+// - Why do we need a Schema and then a type for the data we send on the controllers?
+// - 
 //TEST DATA
 /* const a: TemperatureRespType = {
     id: 1,
@@ -20,7 +23,6 @@ router.get(
         res.send(req.params.id);
         const body = req.body.json;
         
-        res.send(body);
 
 } )
 
@@ -46,7 +48,7 @@ router.post(
       return a;
     }
   );
-  
+
     //---------------WIP--------- 
   router.get('/temperature/history', async (req, res) => {
     //services

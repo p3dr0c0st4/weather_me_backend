@@ -1,6 +1,6 @@
 import express from 'express';
 const router = express.Router();
-import temperatureControler from 'src/api/controller/temperatureSensor';
+import temperatureControler from 'src/api/controller/temperatureController';
 
 router.use('/temperature', temperatureControler)
 
