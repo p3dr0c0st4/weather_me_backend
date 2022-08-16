@@ -5,8 +5,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const router = express_1.default.Router();
-const temperatureSensor_1 = __importDefault(require("src/api/controller/temperatureSensor"));
-router.use('/temperature', temperatureSensor_1.default);
+const temperatureController_1 = __importDefault(require("src/api/controller/temperatureController"));
+router.use('/temperature', temperatureController_1.default);
 //Temperature controlers  --> WIP (structure test)
 /* router.get('temperature/:id', temperatureGet);
 router.post('temperature/', temperaturePost);
