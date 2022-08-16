@@ -1,8 +1,10 @@
 import express from 'express';
-import sensorsController from './controller/sensorsController';
 const router = express.Router();
 
+import sensorsRoutes from './controller/sensorsController';
+import temperatureControler from 'src/api/controller/temperatureController';
 
-router.use('/sensors', sensorsController);
+router.use('/sensors/temperature', temperatureControler)
+router.use('/sensors', sensorsRoutes);
 
 export default router;

@@ -1,8 +1,6 @@
 import express from 'express';
 const router = express.Router();
-import temperatureControler from 'src/api/controller/temperatureController';
 
-router.use('/temperature', temperatureControler)
 
 //Temperature controlers  --> WIP (structure test)
 /* router.get('temperature/:id', temperatureGet);
