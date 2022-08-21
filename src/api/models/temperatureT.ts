@@ -1,7 +1,7 @@
-
-export type HumidityT = {
+export type TemperatureT = {
+    id: Number;
     location: String;
     success: boolean;
-    data: any;
+    date: Number;
     temperature: Number
   };

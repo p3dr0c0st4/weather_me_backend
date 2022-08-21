@@ -1,6 +1,6 @@
 import express from 'express';
 const router = express.Router();
-import {TemperatureT} from 'src/api/models/temperatureSensor';
+import {TemperatureT} from 'src/api/models/temperatureT';
 
 
 
@@ -34,7 +34,7 @@ router.post(
       const a: TemperatureT = {
         id: 1,
         success: true,
-        data: [Date.now],
+        date: 506,
         location: "quarto",
         temperature: 20
   
