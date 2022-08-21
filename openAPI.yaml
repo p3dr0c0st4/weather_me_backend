@@ -1,0 +1,69 @@
+openapi: 3.0.0
+
+info:
+  version: "1.0.0"
+  title: WeatherMe
+  description: Front-end website that show's temperature and humidity levels in a specific room to the user client.
+  
+servers:
+
+  - description: API's to fetch temperature and humidity from sensors
+    url: https://WeatherMe
+    
+paths: 
+  /temperature:
+      
+   
+      get:
+        summary: get temperature
+        description: fetch temperature data from mongodb
+        operationId: getTemperature
+        responses:
+          '200':
+            description: temperature sensor valid response
+            content:
+              application/json:
+                schema:
+                  type: object
+                  items:
+                    $ref: './src/infra/db/implementation/mongodb/schemas/humidity-history-schema.ts'
+                 
+      post:
+        summary: post temperature
+        description: post temperature data from sensors
+        operationId: postTemperature
+        responses:
+          '200':
+            description: post temperature sucess response
+            content:
+              application/json:
+                schema:
+                  type: object
+                  items:
+                    $ref: './src/infra/db/implementation/mongodb/schemas/humidity-history-schema.ts'
+                    
+              
+        
+components:
+  schemas:
+    temperature:
+      type: object
+      required:
+        - id
+        - location
+        - date
+        - temperature
+      properties:
+        id:
+          type: integer
+        location:
+          type: string
+        sucess: 
+          type: boolean
+        date:
+          type: integer
+        temperature:
+          type: integer
+      items: 
+        $ref: './src/infra/db/implementation/mongodb/schemas/humidity-history-schema.ts'
+      description: Type of TemperatureSensor object
