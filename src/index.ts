@@ -3,12 +3,12 @@ dotenv.config({ path: __dirname+'/.env' });
 import express from 'express';
 import routesV1 from './api/v1';
 const app = express();
-import db from './infra/db/implementation/mongodb/mongodb';
+import {init} from './infra/db/implementation/mongodb/mongodb';
 
 const PORT = 3000;
 
 const initDB = () => {
-  db();
+  init();
 };
 app.use(express.json());
 app.use('/api/v1', routesV1);

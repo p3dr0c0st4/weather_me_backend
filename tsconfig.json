@@ -11,7 +11,8 @@
     "rootDir": "src",   
     "baseUrl": ".",
     "paths": {
-      "@db/*": ["./src/infra/db/*"]
+      "@db/*": ["./src/infra/db/*"],
+      "@temperature/*": ["./src/components/temperature/*"]
     }
   }
 }
