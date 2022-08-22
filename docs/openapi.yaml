@@ -7,13 +7,11 @@ info:
   
 servers:
 
-  - description: API's to fetch temperature and humidity from sensors
-    url: https://WeatherMe
+  - description: Localhost
+    url: http://127.0.0.1:3001
     
 paths: 
   /temperature:
-      
-   
       get:
         summary: get temperature
         description: fetch temperature data from mongodb
@@ -25,25 +23,25 @@ paths:
               application/json:
                 schema:
                   type: object
-                  items:
-                    $ref: './src/infra/db/implementation/mongodb/schemas/humidity-history-schema.ts'
+                  $ref: '#/components/schemas/temperature'
                  
       post:
         summary: post temperature
         description: post temperature data from sensors
         operationId: postTemperature
         responses:
-          '200':
+          '201':
             description: post temperature sucess response
             content:
               application/json:
                 schema:
                   type: object
-                  items:
-                    $ref: './src/infra/db/implementation/mongodb/schemas/humidity-history-schema.ts'
-                    
-              
-        
+                  $ref: '#/components/schemas/temperature'
+                example:
+                  location: casa
+                  date: 123456
+                  temperature: 1234
+                     
 components:
   schemas:
     temperature:
@@ -58,12 +56,11 @@ components:
           type: integer
         location:
           type: string
-        sucess: 
-          type: boolean
         date:
           type: integer
         temperature:
           type: integer
-      items: 
-        $ref: './src/infra/db/implementation/mongodb/schemas/humidity-history-schema.ts'
+      example:
+        schemas:
+          - id: 123
       description: Type of TemperatureSensor object
