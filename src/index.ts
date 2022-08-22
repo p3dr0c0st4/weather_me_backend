@@ -1,4 +1,5 @@
-require('dotenv').config();
+import * as dotenv from "dotenv";
+dotenv.config({ path: __dirname+'/.env' }); 
 import express from 'express';
 import routesV1 from './api/v1';
 const app = express();
