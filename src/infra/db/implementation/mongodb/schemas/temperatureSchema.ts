@@ -1,5 +1,6 @@
 import { Schema, model, Document } from 'mongoose';
 
+//Why do we need Itemperature? 
 export interface ITemperature extends Document{
   id?: number,
   location: string,
