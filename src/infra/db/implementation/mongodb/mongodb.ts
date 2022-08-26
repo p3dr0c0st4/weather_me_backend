@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
 
 const init = () => {
-  console.log(process.env.DB_HOST)
   mongoose.connect(
     `mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/weatherme`
   );
