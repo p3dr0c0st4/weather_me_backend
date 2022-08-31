@@ -1,7 +1,6 @@
-import temperatureSchema from '@db/implementation/mongodb/schemas/temperatureSchema';
-import { create } from 'domain';
-
-
+import temperatureSchema, {toDto} from '@db/implementation/mongodb/schemas/temperatureSchema';
+import { db } from '@db/implementation/mongodb/mongodb';
+import { ITemperatureDto } from '@temperature/controller/temperatureController';
 
 export type saveTemperatureParams = {
   location: string;
@@ -18,13 +17,10 @@ const saveTemperature = (data: saveTemperatureParams) => {
     temperature: data.temperature,
   });
 
-  return temp.updateOne({
-    id: 15,
-    location: 'apartamento',
-    date: 808080,
-    temperature: 25
-  })
-
+  return temp.save();
 };
-const readTemperature = () => {};
+const readTemperature = async (filter?:any):Promise<ITemperatureDto[]> => {
+  const docs = await temperatureSchema.find(filter);
+  return docs.map(x => toDto(x));
+};
 export { saveTemperature, readTemperature };
