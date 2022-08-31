@@ -5,8 +5,8 @@ import {getTemperature,postTemperature} from '@temperature/controller/temperatur
  */
 const router = express.Router();
   
-router
-  .get('/',getTemperature)
-  .post('/',postTemperature);
+router.route('/')
+  .get([],getTemperature)
+  .post([],postTemperature);
 
 export default router;
