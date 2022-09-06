@@ -1,9 +1,12 @@
 import {saveTemperature} from '../temperatureService';
+import {saveTemperatureParams} from '../../services/temperatureService';
 
 
 describe('Temperature Services unit tests', () =>{
 
      test('Save temperature (from post to db)', () => {
+
+                   
 
           const response = {
                location: "casa",
@@ -11,12 +14,10 @@ describe('Temperature Services unit tests', () =>{
                temperature: 22
           }
 
-          expect(saveTemperature({
-               location: "123",
-               date: 124124,
-               temperature: 20,
+          saveTemperature(response).then(resp => {
+               expect(resp).toBe({response})
+          }) 
 
-          })).toMatchObject(response);
 
      });
      
