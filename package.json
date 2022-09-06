@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/p3dr0c0st4/weather_me_backend#readme",
   "dependencies": {
+    "axios": "^0.27.2",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
