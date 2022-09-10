@@ -1,4 +1,4 @@
-import { ITemperatureDto } from '@temperature/controller/temperatureController';
+import { TemperatureDto } from '@temperature/dtos/temperatureDto';
 import { Schema, model, Document } from 'mongoose';
 
 interface ITemperatureSchema extends Document{
@@ -8,7 +8,7 @@ interface ITemperatureSchema extends Document{
   date: number
 }
 
-export const toDto = (obj:ITemperatureSchema):ITemperatureDto => {
+export const toDto = (obj:ITemperatureSchema):TemperatureDto => {
   return {
     id: obj._id,
     temperature: obj.temperature,
