@@ -11,12 +11,14 @@ export default (db:IDatabase)=>{
   const router = express.Router();
     
   const service = new TemperatureService(db);
-  const {getTemperature,postTemperature} = new TemperatureController(service);
+  const {getTemperature,postTemperature, updateTemperature} = new TemperatureController(service);
 
   router.route('/')
     .get([],getTemperature)
-    .post([],postTemperature);
+    .post([],postTemperature)
+    .patch([],updateTemperature)
 
   return router;
 }
 
+  

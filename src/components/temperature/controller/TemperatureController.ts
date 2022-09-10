@@ -1,7 +1,6 @@
 import { TemperatureDto } from '@temperature/dtos/temperatureDto';
 import TemperatureService from '@temperature/services/temperatureService';
 import {NextFunction, Response,Request} from 'express'
-import { ITemperatureDto } from '__mocks__/temperatureController';
 
 class TemperatureController{
   constructor(private readonly temperatureService:TemperatureService){
@@ -9,7 +8,7 @@ class TemperatureController{
 
   async getTemperature(req: Request, res: Response, next: NextFunction){
     //Get all docs from DB
-    const tempArr:ITemperatureDto[]  = await this.temperatureService.readTemperature();
+    const tempArr:TemperatureDto[]  = await this.temperatureService.readTemperature();
     // //check if failed and return 500
     // //if success return Array of docs
     res.status(200).json(tempArr);
@@ -33,6 +32,16 @@ class TemperatureController{
         success:true,
       });
   }
+
+   async updateTemperature(req: Request, res: Response, next:NextFunction){
+
+    // Get docs from db
+    let temp:TemperatureDto[]  = await this.temperatureService.updateTemperature();
+    res.json(temp)
+
+  }
+
+
 }
 
 export default TemperatureController;

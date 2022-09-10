@@ -13,13 +13,27 @@ class TemperatureRepository implements ICrud{
 
     return Promise.resolve(temp.save() !== null);
     }
+
+
     async read(filter: any): Promise<TemperatureDto[]> {
             const docs = await temperatureSchema.find({filter});
     return docs.map(x => toDto(x));
     }
-    update(): void {
-        throw new Error('Method not implemented.');
+
+
+    async update(filter: any): Promise<TemperatureDto[]> {
+
+        const docs = await temperatureSchema.find({filter})
+        temperatureSchema.updateOne(filter, (docs:TemperatureDto)=>{
+            return Promise.resolve (docs = {
+                location: docs.location,
+                date: docs.date,
+                temperature: docs.temperature
+            })
+        })
+        
     }
+
     delete(): void {
         throw new Error('Method not implemented.');
     }
