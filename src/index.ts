@@ -4,21 +4,24 @@ import express from 'express';
 import routesV1 from './api/v1';
 const app = express();
 import cors from 'cors';
-import {init} from './infra/db/implementation/mongodb/mongodb';
+import MongoDB from './infra/db/implementation/mongodb/mongodb';
 
 const PORT = 3000;
 
 const initDB = () => {
-  init();
+  const db = new MongoDB();
+  db.init();
+  return db;
 };
 app.use(cors());
 app.use(express.json());
-app.use('/api/v1', routesV1);
+
+const db = initDB();
+
+app.use('/api/v1', routesV1(db));
 app.get('/ping', (req, res) => {
   res.json({ success: true });
 });
-
-initDB();
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
