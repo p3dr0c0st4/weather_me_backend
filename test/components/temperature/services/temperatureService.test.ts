@@ -1,5 +1,5 @@
-import {saveTemperature} from '../temperatureService';
-import {saveTemperatureParams} from '../../services/temperatureService';
+import {saveTemperature} from '../../../../src/components/temperature/services/temperatureService';
+import {saveTemperatureParams} from '../../../../src/components/temperature/services/temperatureService';
 
 
 describe('Temperature Services unit tests', () =>{
