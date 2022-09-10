@@ -4,8 +4,6 @@ describe('Check API endpoists', () =>{
 
     test('get getTemperature', () =>{
 
-        mock
-
     })
 
 })
