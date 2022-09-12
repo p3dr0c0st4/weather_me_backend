@@ -68,13 +68,19 @@ paths:
                   temperature: 1234
           '401':
             $ref: '#/components/responses/UnauthorizedError'   
-
+  /temperature/{id}:
       patch:
         summary: Patch temperature
         description: Update data
         operationId: updateTemperature
         security:
           - basicAuth: []
+        parameters:
+          - in: path 
+            name: id
+            schema:
+              type: string
+            required: true
         requestBody:
           description: temperature object
           required: true
