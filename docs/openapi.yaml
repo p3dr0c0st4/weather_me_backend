@@ -51,7 +51,7 @@ paths:
                   temperature:
                     type: integer
               example:
-                  location: '123'
+                  location: '1231'
                   date: 124124
                   temperature: 12312
         responses:
@@ -68,6 +68,46 @@ paths:
                   temperature: 1234
           '401':
             $ref: '#/components/responses/UnauthorizedError'   
+
+      patch:
+        summary: Patch temperature
+        description: Update data
+        operationId: updateTemperature
+        security:
+          - basicAuth: []
+        requestBody:
+          description: temperature object
+          required: true
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                  location:
+                    type: string
+                  date:                    
+                    type: integer
+                  temperature:
+                    type: integer
+              example:
+                  location: '123'
+                  date: 124124
+                  temperature: 12312
+        responses:
+          '200':
+            description: Temperature updated.
+            content:
+              application/json:
+                schema:
+                  type: object
+                  $ref: '#/components/schemas/temperature'
+                example:
+                  location: campoUpdate
+                  date: 989796
+                  temperature: 55
+
+
 components:
   securitySchemes:
     basicAuth:
