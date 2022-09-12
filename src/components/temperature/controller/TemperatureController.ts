@@ -1,6 +1,7 @@
 import { TemperatureDto } from '@temperature/dtos/temperatureDto';
-import TemperatureService from '@temperature/services/temperatureService';
-import {NextFunction, Response,Request} from 'express'
+import TemperatureService from '../services/TemperatureService';
+
+import {NextFunction, Response,Request} from 'express';
 
 class TemperatureController{
   constructor(private readonly temperatureService:TemperatureService){
@@ -37,8 +38,19 @@ class TemperatureController{
 
     // Get docs from db
     let temp:TemperatureDto[]  = await this.temperatureService.updateTemperature();
-    res.json(temp)
+    //check if failed and return 500
+    if(!temp){
+      return res.status(500).json({
+        sucess: false,
+        message: 'Failed to update Temperature Sensor'
+      })
+    }
 
+    //Send response
+    return res.status(201).json({
+      success:true,
+      message: 'Successfully updated on Database'
+    });
   }
 
 

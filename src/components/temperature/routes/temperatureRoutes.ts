@@ -1,7 +1,7 @@
 import MongoDB from '@db/implementation/mongodb/mongodb';
 import { IDatabase } from '@db/interfaces/IDatabase';
 import TemperatureController from '@temperature/controller/TemperatureController';
-import TemperatureService from '@temperature/services/temperatureService';
+import TemperatureService from '../services/TemperatureService';
 import express from 'express';
 
 export default (db:IDatabase)=>{

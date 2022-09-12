@@ -10,11 +10,11 @@ class TemperatureService{
   };
 
   async readTemperature (filter?:any):Promise<TemperatureDto[]>  {
-    return this.db.temperature.read(filter);
+    return await this.db.temperature.read(filter);
   };
 
   async updateTemperature (filter?:any):Promise<TemperatureDto[]>  {
-    return this.db.temperature.update(filter);
+    return await this.db.temperature.update(filter);
   };
 }
 export default TemperatureService;

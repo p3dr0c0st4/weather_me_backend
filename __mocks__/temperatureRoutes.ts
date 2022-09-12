@@ -1,4 +1,4 @@
-import axios from 'axios';
+/* import axios from 'axios';
 import { getTemperature } from '../src/components/temperature/controller/temperatureController';
 
 
@@ -9,4 +9,4 @@ function mockGetTemperature(){
 };
 
 
-module.exports = {mockGetTemperature}
+module.exports = {mockGetTemperature} */
