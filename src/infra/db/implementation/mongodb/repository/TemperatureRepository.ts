@@ -24,13 +24,16 @@ class TemperatureRepository implements ICrud{
     async update(filter: any): Promise<TemperatureDto[]> {
 
         const docs = await temperatureSchema.find({filter})
+        
         temperatureSchema.updateOne(filter, (docs:TemperatureDto)=>{
+            
             return Promise.resolve (docs = {
                 location: docs.location,
                 date: docs.date,
                 temperature: docs.temperature
             })
         })
+        return docs;
         
     }
 
