@@ -18,5 +18,9 @@ class TemperatureService {
   ): Promise<TemperatureDto | never> {
     return await this.db.temperature.updateById(id, update);
   }
+
+  async deleteTemperature(id: string): Promise<boolean>{
+    return await this.db.temperature.deleteById(id);
+  }
 }
 export default TemperatureService;

@@ -11,6 +11,7 @@ class TemperatureController {
     const tempArr: TemperatureDto[] =
       await this.temperatureService.readTemperature();
     // //check if failed and return 500
+
     // //if success return Array of docs
     res.status(200).json(tempArr);
   }
@@ -35,6 +36,7 @@ class TemperatureController {
   }
 
   async updateTemperature(req: Request, res: Response, next: NextFunction) {
+    console.log('TemperatureService1:', this.temperatureService)
     // Get docs from db
     try {
       const temp: TemperatureDto = {
@@ -43,6 +45,9 @@ class TemperatureController {
         temperature: req.body.temperature,
       };
       const id = req.params.id;
+
+      //TEST
+      console.log('TemperatureService:',this.temperatureService)
 
       let result: TemperatureDto =
         await this.temperatureService.updateTemperature(id, temp);
@@ -66,6 +71,23 @@ class TemperatureController {
         message: error,
       });
     }
+  }
+  async deleteTemperature (req:Request, res:Response, next:NextFunction){
+
+    console.log('TEST- deleteTemperature Controller check'+ this.temperatureService);
+
+    const temp: TemperatureDto = {
+      id: req.body._id,
+      date: req.body.date,
+      location: req.body.location,
+      temperature: req.body.temperature,
+    };
+    //
+    const result = await this.temperatureService.deleteTemperature(this.temp.id);
+    
+    
+
+
   }
 }
 
