@@ -16,6 +16,7 @@ class TemperatureRepository implements ICrud {
 
   async read(filter: any): Promise<TemperatureDto[]> {
     const docs = await temperatureSchema.find({ filter });
+    console.log('TemperatureRepository - read')
     return docs.map((x) => toDto(x));
   }
 
@@ -40,8 +41,18 @@ class TemperatureRepository implements ICrud {
     return toDto(doc);
   }
 
-  deleteById(): void {
-    throw new Error('Method not implemented.');
+  async deleteById(id:string): Promise<boolean> {
+
+    /* const doc = await temperatureSchema.findByIdAndDelete((id:String) =>{
+      if(err){
+        console.log(err)
+      }else{
+        console.log('Object deleted: '+ doc);
+      }
+    }) */
+    const doc = await temperatureSchema.findByIdAndDelete(id)
+    return Promise.resolve(doc.deleteOne)
+    
   }
 }
 export default TemperatureRepository;

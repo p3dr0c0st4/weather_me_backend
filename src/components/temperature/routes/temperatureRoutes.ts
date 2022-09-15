@@ -1,4 +1,3 @@
-import MongoDB from '@db/implementation/mongodb/mongodb';
 import { IDatabase } from '@db/interfaces/IDatabase';
 import TemperatureController from '@temperature/controller/TemperatureController';
 import TemperatureService from '../services/TemperatureService';
@@ -11,12 +10,15 @@ export default (db:IDatabase)=>{
   const router = express.Router();
     
   const service = new TemperatureService(db);
-  const {getTemperature,postTemperature, updateTemperature} = new TemperatureController(service);
+  const {getTemperature,postTemperature, updateTemperature, deleteTemperature} = new TemperatureController(service);
 
   router.route('/')
     .get([],getTemperature)
     .post([],postTemperature)
+    
+  router.route('/:id')
     .patch([],updateTemperature)
+    .delete([],deleteTemperature)
 
   return router;
 }
