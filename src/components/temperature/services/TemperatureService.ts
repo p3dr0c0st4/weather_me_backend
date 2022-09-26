@@ -1,26 +1,26 @@
 import { IDatabase } from '@db/interfaces/IDatabase';
 import { TemperatureDto } from '@temperature/dtos/temperatureDto';
 
-class TemperatureService {
+export default class TemperatureService {
   constructor(private db: IDatabase) {}
 
-  saveTemperature(data: TemperatureDto) {
+  saveTemperature = (data: TemperatureDto) => {
     return this.db.temperature.create(data);
-  }
+  };
 
-  async readTemperature(filter?: any): Promise<TemperatureDto[]> {
-    return await this.db.temperature.read(filter);
-  }
+  readTemperature = (filter?: any): Promise<TemperatureDto[]> => {
+    return this.db.temperature.read(filter);
+  };
 
-  async updateTemperature(
+  updateTemperature = (
     id: string,
     update: TemperatureDto
-  ): Promise<TemperatureDto | never> {
-    return await this.db.temperature.updateById(id, update);
-  }
+  ): Promise<TemperatureDto | never> => {
+    return this.db.temperature.updateById(id, update);
+  };
 
-  async deleteTemperature(id: string): Promise<boolean>{
-    return await this.db.temperature.deleteById(id);
-  }
+  deleteTemperature = (id: string): Promise<boolean> => {
+    return this.db.temperature.deleteById(id);
+  };
 }
-export default TemperatureService;
+

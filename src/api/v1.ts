@@ -1,16 +1,14 @@
 import express from 'express';
-const router = express.Router();
 import temperatureRoutes from '@temperature/routes/temperatureRoutes';
 import { IDatabase } from '@db/interfaces/IDatabase';
+import TemperatureService from '@temperature/services/TemperatureService';
 
 /**
  * /api/v1
  */
-const v1Routes = (db:IDatabase)=>{
-
-  router.use('/temperature', temperatureRoutes(db));
+export default function (db: IDatabase) {
+  const router = express.Router({ mergeParams: true });
+  const service = new TemperatureService(db);
+  router.use('/temperature', temperatureRoutes(service));
   return router;
-  
 }
-
-export default v1Routes;

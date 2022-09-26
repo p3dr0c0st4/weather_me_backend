@@ -124,25 +124,6 @@ paths:
             schema:
               type: string  
             required: true
-        requestBody:
-          description: temperature object
-          required: true
-          content:
-            application/json:
-              schema:
-                properties:
-                  id:
-                    type: integer
-                  location:
-                    type: string
-                  date:                    
-                    type: integer
-                  temperature:
-                    type: integer
-              example:
-                  location: '123'
-                  date: 124124
-                  temperature: 12312
         responses:
           '200':
             description: Temperature deleted.
