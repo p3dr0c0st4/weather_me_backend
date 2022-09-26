@@ -3,10 +3,10 @@ import TemperatureService from '../services/TemperatureService';
 
 import { NextFunction, Response, Request } from 'express';
 
-class TemperatureController {
-  constructor(private readonly temperatureService: TemperatureService) {}
+export default class TemperatureController {
+  constructor(private temperatureService: TemperatureService) {}
 
-  async getTemperature(req: Request, res: Response, next: NextFunction) {
+  getTemperature = async (req: Request, res: Response, next: NextFunction) => {
     //Get all docs from DB
     const tempArr: TemperatureDto[] =
       await this.temperatureService.readTemperature();
@@ -14,15 +14,14 @@ class TemperatureController {
 
     // //if success return Array of docs
     res.status(200).json(tempArr);
-  }
+  };
 
-  async postTemperature(req: Request, res: Response, next: NextFunction) {
+  postTemperature = async (req: Request, res: Response, next: NextFunction) => {
     const temp: TemperatureDto = {
       date: req.body.date,
       location: req.body.location,
       temperature: req.body.temperature,
     };
-
     const result = await this.temperatureService.saveTemperature(temp);
     if (!result) {
       return res.status(500).json({
@@ -33,10 +32,14 @@ class TemperatureController {
     return res.status(201).json({
       success: true,
     });
-  }
+  };
 
-  async updateTemperature(req: Request, res: Response, next: NextFunction) {
-    console.log('TemperatureService1:', this.temperatureService)
+  updateTemperature = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
+    console.log('TemperatureService1:', this.temperatureService);
     // Get docs from db
     try {
       const temp: TemperatureDto = {
@@ -47,7 +50,7 @@ class TemperatureController {
       const id = req.params.id;
 
       //TEST
-      console.log('TemperatureService:',this.temperatureService)
+      console.log('TemperatureService:', this.temperatureService);
 
       let result: TemperatureDto =
         await this.temperatureService.updateTemperature(id, temp);
@@ -71,24 +74,24 @@ class TemperatureController {
         message: error,
       });
     }
-  }
-  async deleteTemperature (req:Request, res:Response, next:NextFunction){
+  };
+  deleteTemperature = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
+    const id = req.params.id;
+    const result = await this.temperatureService.deleteTemperature(id);
 
-    console.log('TEST- deleteTemperature Controller check'+ this.temperatureService);
-
-    const temp: TemperatureDto = {
-      id: req.body._id,
-      date: req.body.date,
-      location: req.body.location,
-      temperature: req.body.temperature,
-    };
-    //
-    const result = await this.temperatureService.deleteTemperature(this.temp.id);
-    
-    
-
-
-  }
+    if (!result) {
+      return res.status(500).json({
+        sucess: false,
+        message: 'Failed to delete object',
+      });
+    }
+    res.status(200).json({
+      sucess: true,
+      message: 'Successfully deleted on Database',
+    });
+  };
 }
-
-export default TemperatureController;
