@@ -1,10 +1,13 @@
 import supertest from 'supertest';
 import server from '../../../src/infra/server/server'
 import mongoose, { mongo } from 'mongoose';
-import { MongoMemoryServer } from 'mongodb-memory-server'
+import { MongoMemoryServer } from 'mongodb-memory-server';
+import MockDb from '../../../src/infra/db/implementation/mockDb/MockDb';
+import application from '../../../src/app';
 
 
-const startServer = server();
+const mockDb = new MockDb(); 
+const app = application(mockDb);
 
 describe('temperature', () =>{
 
@@ -22,11 +25,10 @@ describe('temperature', () =>{
 
     describe('get temperature routes', () =>{
         describe('If temperature does not exist', () =>{         
-            it('return a 404', async () =>{
-                const temperatureId = 'temperature-1234';
-
-                await supertest(startServer).get(`/api/v1/temperature`);
-                expect(404);
+            it('return a 200', async () =>{
+                
+                const res = await supertest(app).get(`/api/v1/temperature`);
+                expect(res.statusCode).toBe(200);
             })
         });
 
