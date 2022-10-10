@@ -12,9 +12,8 @@ export default class TemperatureController {
       await this.temperatureService.readTemperature();
     // //check if failed and return 404
     if (!tempArr) {
-      return res.status(404).json({
-        success: false,
-        message: 'Failed to get temperature',
+      return res.status(200).json({
+        success: true,
       });
     }
     // //if success return Array of docs
