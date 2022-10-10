@@ -10,8 +10,13 @@ export default class TemperatureController {
     //Get all docs from DB
     const tempArr: TemperatureDto[] =
       await this.temperatureService.readTemperature();
-    // //check if failed and return 500
-
+    // //check if failed and return 404
+    if (!tempArr) {
+      return res.status(404).json({
+        success: false,
+        message: 'Failed to get temperature',
+      });
+    }
     // //if success return Array of docs
     res.status(200).json(tempArr);
   };
