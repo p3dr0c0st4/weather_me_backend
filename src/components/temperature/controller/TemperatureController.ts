@@ -10,14 +10,9 @@ export default class TemperatureController {
     //Get all docs from DB
     const tempArr: TemperatureDto[] =
       await this.temperatureService.readTemperature();
-    // //check if success and return 200 with empty array
-    if (!tempArr) {
-      return res.status(200).json({
-        success: true,
-      });
-    }
+    
     // //if success return Array of docs
-    return res.status(200).json(tempArr);
+    return res.status(200).json({data:tempArr});
   };
 
   postTemperature = async (req: Request, res: Response, next: NextFunction) => {
@@ -87,12 +82,12 @@ export default class TemperatureController {
 
     if (!result) {
       return res.status(500).json({
-        sucess: false,
+        success: false,
         message: 'Failed to delete object',
       });
     }
     res.status(200).json({
-      sucess: true,
+      success: true,
       message: 'Successfully deleted on Database',
     });
   };
