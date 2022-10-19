@@ -1,10 +1,10 @@
-import ICrud from '@db/interfaces/ICrud';
+import ICrudTemperature from '@db/interfaces/ICrudTemperature';
 import { IDatabase } from '@db/interfaces/IDatabase';
 import mongoose from 'mongoose';
 import TemperatureRepository from './repositories/TemperatureRepository';
 
 class MongoDB implements IDatabase{
-  temperature: ICrud;
+  temperature: ICrudTemperature;
   
   constructor(){
     this.temperature = new TemperatureRepository();

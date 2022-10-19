@@ -1,6 +1,6 @@
-import ICrud from "./ICrud";
+import ICrudTemperature from "./ICrudTemperature";
 
 export interface IDatabase {
-  temperature: ICrud;
+  temperature: ICrudTemperature;
   init(): void;
 }

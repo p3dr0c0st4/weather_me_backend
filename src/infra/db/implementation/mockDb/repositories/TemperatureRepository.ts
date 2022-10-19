@@ -1,8 +1,8 @@
-import ICrud from '@db/interfaces/ICrud';
+import ICrudTemperature from '@db/interfaces/ICrudTemperature';
 import { TemperatureDto } from '@temperature/dtos/temperatureDto';
 import { randomBytes } from 'crypto';
 
-export default class TemperatureRepository implements ICrud {
+export default class TemperatureRepository implements ICrudTemperature {
   private data: Map<string, TemperatureDto>;
 
   constructor() {

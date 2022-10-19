@@ -1,8 +1,8 @@
 import temperatureSchema, {toDto} from '@db/implementation/mongodb/schemas/temperatureSchema';
-import ICrud from '@db/interfaces/ICrud';
+import ICrudTemperature from '@db/interfaces/ICrudTemperature';
 import { TemperatureDto } from '@temperature/dtos/temperatureDto';
 
-class TemperatureRepository implements ICrud {
+class TemperatureRepository implements ICrudTemperature {
   create(data: TemperatureDto): Promise<boolean> {
     const temp = new temperatureSchema({
       id: undefined,
