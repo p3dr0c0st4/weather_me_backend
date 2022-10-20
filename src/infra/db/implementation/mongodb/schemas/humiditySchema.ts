@@ -1,4 +1,4 @@
-import { HumidityDto } from '@temperature/dtos/humidityDto';
+import { HumidityDto } from '@humidity/dtos/humidityDto';
 import { Schema, model, Document } from 'mongoose';
 
 interface IHumiditySchema extends Document{
