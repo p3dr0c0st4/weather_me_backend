@@ -3,6 +3,7 @@ import ICrudHumidity from '@db/interfaces/ICrudHumidity';
 import { HumidityDto } from '@humidity/dtos/humidityDto';
 
 class HumidityRepository implements ICrudHumidity {
+  
   create(data: HumidityDto): Promise<boolean> {
     const temp = new humiditySchema({
       id: undefined,
