@@ -43,7 +43,7 @@ paths:
               schema:
                 properties:
                   id:
-                    type: integer
+                    type: string
                   location:
                     type: string
                   date:
@@ -89,7 +89,7 @@ paths:
               schema:
                 properties:
                   id:
-                    type: integer
+                    type: string
                   location:
                     type: string
                   date:                    
@@ -136,6 +136,132 @@ paths:
                   location: fieldTodelete
                   date: 747578
                   temperature: 80
+
+  /humidity:
+      get:
+        summary: get humidity
+        description: fetch humidity data from mongodb
+        operationId: GetHumidity
+        security:
+          - basicAuth: []
+        responses:
+          '200':
+            description: humidity sensor valid response
+            content:
+              application/json:
+                schema:
+                  type: object
+                  $ref: '#/components/schemas/humidity'
+          '401':
+            $ref: '#/components/responses/UnauthorizedError'
+                 
+      post:
+        summary: post humidity
+        description: post humidity data from sensors
+        operationId: PostHumidity
+        security:
+          - basicAuth: []
+        requestBody:
+          description: humidity object
+          required: true
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: string
+                  location:
+                    type: string
+                  date:
+                    type: integer
+                  temperature:
+                    type: integer
+              example:
+                  location: '1231'
+                  date: 124124
+                  humidity: 12312
+        responses:
+          '201':
+            description: post humidity sucess response
+            content:
+              application/json:
+                schema:
+                  type: object
+                  $ref: '#/components/schemas/humidity'
+                example:
+                  location: casa
+                  date: 123456
+                  humidity: 1234
+          '401':
+            $ref: '#/components/responses/UnauthorizedError'   
+  /humidity/{id}:
+      patch:
+        summary: Patch humidity
+        description: Update data
+        operationId: updateHumidity
+        security:
+          - basicAuth: []
+        parameters:
+          - in: path 
+            name: id
+            schema:
+              type: string  
+            required: true
+        requestBody:
+          description: humidity object
+          required: true
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: string
+                  location:
+                    type: string
+                  date:                    
+                    type: integer
+                  humidity:
+                    type: integer
+              example:
+                  location: '123'
+                  date: 124124
+                  humidity: 12312
+        responses:
+          '200':
+            description: humidity updated.
+            content:
+              application/json:
+                schema:
+                  type: object
+                  $ref: '#/components/schemas/humidity'
+                example:
+                  location: campoUpdate
+                  date: 989796
+                  humidity: 55
+      delete:
+        summary: Delete humidity
+        description: Delete humidity by ID
+        operationId: deleteHumidity
+        security:
+          - basicAuth: []
+        parameters:
+          - in: path 
+            name: id
+            schema:
+              type: string  
+            required: true
+        responses:
+          '200':
+            description: Humidity deleted.
+            content:
+              application/json:
+                schema:
+                  type: object
+                  $ref: '#/components/schemas/humidity'
+                example:
+                  location: fieldTodelete
+                  date: 747578
+                  humidity: 80
   
 
 
@@ -158,7 +284,7 @@ components:
         - temperature
       properties:
         id:
-          type: integer
+          type: string
         location:
           type: string
         date:
@@ -168,6 +294,27 @@ components:
       example:
           - id: 123
       description: Type of TemperatureSensor object
+    humidity:
+      type: object
+      required:
+        - id
+        - location
+        - date
+        - humidity
+      properties:
+        id: 
+          type: string
+        location:
+          type: string
+        date:
+          type: string
+        humidity:
+          type: integer
+      example:
+        - id: 1234
+        - location: someLocation
+        - date: 121212
+        - humidity: 85
 
 security:
   - securityRequirement: []
