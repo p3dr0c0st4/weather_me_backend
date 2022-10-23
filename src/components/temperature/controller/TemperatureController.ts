@@ -10,10 +10,9 @@ export default class TemperatureController {
     //Get all docs from DB
     const tempArr: TemperatureDto[] =
       await this.temperatureService.readTemperature();
-    // //check if failed and return 500
-
+    
     // //if success return Array of docs
-    res.status(200).json(tempArr);
+    return res.status(200).json({data:tempArr});
   };
 
   postTemperature = async (req: Request, res: Response, next: NextFunction) => {
@@ -39,7 +38,7 @@ export default class TemperatureController {
     res: Response,
     next: NextFunction
   ) => {
-    console.log('TemperatureService1:', this.temperatureService);
+    
     // Get docs from db
     try {
       const temp: TemperatureDto = {
@@ -49,8 +48,6 @@ export default class TemperatureController {
       };
       const id = req.params.id;
 
-      //TEST
-      console.log('TemperatureService:', this.temperatureService);
 
       let result: TemperatureDto =
         await this.temperatureService.updateTemperature(id, temp);
@@ -85,12 +82,12 @@ export default class TemperatureController {
 
     if (!result) {
       return res.status(500).json({
-        sucess: false,
+        success: false,
         message: 'Failed to delete object',
       });
     }
     res.status(200).json({
-      sucess: true,
+      success: true,
       message: 'Successfully deleted on Database',
     });
   };

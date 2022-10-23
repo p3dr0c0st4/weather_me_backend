@@ -43,14 +43,7 @@ class TemperatureRepository implements ICrud {
 
   async deleteById(id:string): Promise<boolean> {
 
-    /* const doc = await temperatureSchema.findByIdAndDelete((id:String) =>{
-      if(err){
-        console.log(err)
-      }else{
-        console.log('Object deleted: '+ doc);
-      }
-    }) */
-    const doc = await temperatureSchema.findByIdAndDelete(id)
+    const doc:any = await temperatureSchema.findByIdAndDelete(id)
     return Promise.resolve(doc.deleteOne)
     
   }
