@@ -315,6 +315,3 @@ components:
         - location: someLocation
         - date: 121212
         - humidity: 85
-
-security:
-  - securityRequirement: []
