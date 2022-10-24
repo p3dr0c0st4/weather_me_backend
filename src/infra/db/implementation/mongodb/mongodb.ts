@@ -4,6 +4,7 @@ import { IDatabase } from '@db/interfaces/IDatabase';
 import mongoose from 'mongoose';
 import TemperatureRepository from './repositories/TemperatureRepository';
 import HumidityRepository from './repositories/HumidityRepository';
+import Environment from 'src/config/environment';
 
 class MongoDB implements IDatabase{
   temperature: ICrudTemperature;
@@ -16,7 +17,7 @@ class MongoDB implements IDatabase{
 
   init(){
     mongoose.connect(
-      `mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/weatherme`
+      `mongodb://${Environment.mongoDB.host}:${Environment.mongoDB.port}/weatherme`
     );
     const db = mongoose.connection;
 
