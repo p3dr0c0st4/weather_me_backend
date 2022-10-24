@@ -21,7 +21,6 @@
   },
   "homepage": "https://github.com/p3dr0c0st4/weather_me_backend#readme",
   "dependencies": {
-    "@types/mongodb-memory-server": "^2.3.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",

@@ -65,7 +65,6 @@ export default class HumidityController {
         data: result,
       });
     } catch (error) {
-      console.log(error);
       return res.status(500).json({
         sucess: false,
         message: error,

@@ -16,7 +16,6 @@ class TemperatureRepository implements ICrudTemperature {
 
   async read(filter: any): Promise<TemperatureDto[]> {
     const docs = await temperatureSchema.find({ filter });
-    console.log('TemperatureRepository - read')
     return docs.map((x) => toDto(x));
   }
 
