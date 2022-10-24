@@ -67,7 +67,7 @@ export default class HumidityController {
     } catch (error) {
       return res.status(500).json({
         sucess: false,
-        message: error,
+        message: 'Failed to update Humidity Sensor',
       });
     }
   };

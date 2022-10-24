@@ -8,7 +8,7 @@
     "start": "yarn node build/index.js",
     "build2": "babel src --extension \".js,.ts\" --out-dir build --copy-files",
     "build": "tsc",
-    "start-dev": "yarn install && yarn ts-node-dev -r dotenv/config -r tsconfig-paths/register --inspect --transpile-only ./src/index.ts"
+    "start:dev": "yarn install && yarn ts-node-dev -r dotenv/config -r tsconfig-paths/register --inspect --transpile-only ./src/index.ts"
   },
   "repository": {
     "type": "git",
