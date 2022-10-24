@@ -9,8 +9,7 @@ import {TemperatureDto} from '../../../../src/components/temperature/dtos/temper
 const mockDb = new MockDb();
 const mockTemperatureService = new TemperatureService(mockDb)
 
-
-
+//Alteracao1
 const app = express();
 app.use(express.json());
 
