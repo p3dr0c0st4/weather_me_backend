@@ -1,4 +1,3 @@
-import { IDatabase } from '@db/interfaces/IDatabase';
 import TemperatureController from '@temperature/controller/TemperatureController';
 import TemperatureService from '../services/TemperatureService';
 import express from 'express';

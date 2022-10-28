@@ -16,7 +16,8 @@
     "paths": {
       "@server/*": ["./src/infra/server/*"],
       "@db/*": ["./src/infra/db/*"],
-      "@temperature/*": ["./src/components/temperature/*"]
+      "@temperature/*": ["./src/components/temperature/*"],
+      "@humidity/*":["./src/components/humidity/*"]
     }
   }
 }

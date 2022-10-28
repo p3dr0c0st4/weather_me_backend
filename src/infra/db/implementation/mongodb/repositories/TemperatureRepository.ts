@@ -1,8 +1,8 @@
 import temperatureSchema, {toDto} from '@db/implementation/mongodb/schemas/temperatureSchema';
-import ICrud from '@db/interfaces/ICrud';
+import ICrudTemperature from '@db/interfaces/ICrudTemperature';
 import { TemperatureDto } from '@temperature/dtos/temperatureDto';
 
-class TemperatureRepository implements ICrud {
+class TemperatureRepository implements ICrudTemperature {
   create(data: TemperatureDto): Promise<boolean> {
     const temp = new temperatureSchema({
       id: undefined,
@@ -16,7 +16,6 @@ class TemperatureRepository implements ICrud {
 
   async read(filter: any): Promise<TemperatureDto[]> {
     const docs = await temperatureSchema.find({ filter });
-    console.log('TemperatureRepository - read')
     return docs.map((x) => toDto(x));
   }
 

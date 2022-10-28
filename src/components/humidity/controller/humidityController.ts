@@ -1,31 +1,31 @@
-import { TemperatureDto } from '@temperature/dtos/temperatureDto';
-import TemperatureService from '../services/TemperatureService';
+import { HumidityDto } from '@humidity/dtos/humidityDto';
+import HumidityService from '@humidity/services/HumidityService';
 
 import { NextFunction, Response, Request } from 'express';
 
-export default class TemperatureController {
-  constructor(private temperatureService: TemperatureService) {}
+export default class HumidityController {
+  constructor(private humidityService: HumidityService) {}
 
-  getTemperature = async (req: Request, res: Response, next: NextFunction) => {
+  getHumidity = async (req: Request, res: Response, next: NextFunction) => {
     //Get all docs from DB
-    const tempArr: TemperatureDto[] =
-      await this.temperatureService.readTemperature();
+    const tempArr: HumidityDto[] =
+      await this.humidityService.readHumidity();
     
     // //if success return Array of docs
     return res.status(200).json({data:tempArr});
   };
 
-  postTemperature = async (req: Request, res: Response, next: NextFunction) => {
-    const temp: TemperatureDto = {
+  postHumidity = async (req: Request, res: Response, next: NextFunction) => {
+    const temp: HumidityDto = {
       date: req.body.date,
       location: req.body.location,
-      temperature: req.body.temperature,
+      humidity: req.body.humidity,
     };
-    const result = await this.temperatureService.saveTemperature(temp);
+    const result = await this.humidityService.saveHumidity(temp);
     if (!result) {
       return res.status(500).json({
         success: false,
-        message: 'Failed to save temperature',
+        message: 'Failed to save humidity',
       });
     }
     return res.status(201).json({
@@ -33,7 +33,7 @@ export default class TemperatureController {
     });
   };
 
-  updateTemperature = async (
+  updateHumidity = async (
     req: Request,
     res: Response,
     next: NextFunction
@@ -41,21 +41,21 @@ export default class TemperatureController {
     
     // Get docs from db
     try {
-      const temp: TemperatureDto = {
+      const temp: HumidityDto = {
         date: req.body.date,
         location: req.body.location,
-        temperature: req.body.temperature,
+        humidity: req.body.humidity,
       };
       const id = req.params.id;
 
 
-      let result: TemperatureDto =
-        await this.temperatureService.updateTemperature(id, temp);
+      let result: HumidityDto =
+        await this.humidityService.updateHumidity(id, temp);
       //check if failed and return 500
       if (!result) {
         return res.status(500).json({
           sucess: false,
-          message: 'Failed to update Temperature Sensor',
+          message: 'Failed to update Humidity Sensor',
         });
       }
       //Send response
@@ -67,17 +67,17 @@ export default class TemperatureController {
     } catch (error) {
       return res.status(500).json({
         sucess: false,
-        message: error,
+        message: 'Failed to update Humidity Sensor',
       });
     }
   };
-  deleteTemperature = async (
+  deleteHumidity = async (
     req: Request,
     res: Response,
     next: NextFunction
   ) => {
     const id = req.params.id;
-    const result = await this.temperatureService.deleteTemperature(id);
+    const result = await this.humidityService.deleteHumidity(id);
 
     if (!result) {
       return res.status(500).json({

@@ -1,32 +1,32 @@
-import ICrudTemperature from '@db/interfaces/ICrudTemperature';
-import { TemperatureDto } from '@temperature/dtos/temperatureDto';
+import ICrudHumidity from '@db/interfaces/ICrudHumidity';
+import { HumidityDto } from '@humidity/dtos/humidityDto';
 import { randomBytes } from 'crypto';
 
-export default class TemperatureRepository implements ICrudTemperature {
-  private data: Map<string, TemperatureDto>;
+export default class HumidityRepository implements ICrudHumidity {
+  private data: Map<string, HumidityDto>;
 
   constructor() {
-    this.data = new Map<string, TemperatureDto>();
+    this.data = new Map<string, HumidityDto>();
   }
 
-  create(data: TemperatureDto): Promise<boolean> {
+  create(data: HumidityDto): Promise<boolean> {
     const id = randomBytes(16).toString('hex');
     this.data.set(id, data);
     return Promise.resolve(true);
   }
-  read(filter: any): Promise<TemperatureDto[]> {
+  read(filter: any): Promise<HumidityDto[]> {
     return Promise.resolve(
       [...this.data.entries()].map((x) => {
         return {
           id: x[0],
-          temperature: x[1].temperature,
+          humidity: x[1].humidity,
           location: x[1].location,
           date: x[1].date,
         };
       })
     );
   }
-  updateById(id: string, data: TemperatureDto): Promise<TemperatureDto> {
+  updateById(id: string, data: HumidityDto): Promise<HumidityDto> {
     throw new Error('Method not implemented.');
   }
   deleteById(id: string): Promise<boolean> {
