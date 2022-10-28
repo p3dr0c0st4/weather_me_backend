@@ -17,7 +17,6 @@ class HumidityRepository implements ICrudHumidity {
 
   async read(filter: any): Promise<HumidityDto[]> {
     const docs = await humiditySchema.find({ filter });
-    console.log('HumidityRepository - read')
     return docs.map((x) => toDto(x));
   }
 

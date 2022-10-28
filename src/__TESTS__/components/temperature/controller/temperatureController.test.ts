@@ -1,8 +1,8 @@
 import supertest from 'supertest';
 import express, { response } from 'express'
-import TemperatureController from '../../../../src/components/temperature/controller/TemperatureController'
-import TemperatureService from '../../../../src/components/temperature/services/TemperatureService';
-import MockDb from '../../../../src/infra/db/implementation/mockDb/MockDb';
+import TemperatureController from '../../../../components/temperature/controller/TemperatureController'
+import TemperatureService from '../../../../components/temperature/services/TemperatureService';
+import MockDb from '../../../../infra/db/implementation/mockDb/MockDb';
 
 
 const mockDb = new MockDb();

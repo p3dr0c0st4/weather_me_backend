@@ -1,8 +1,8 @@
 import supertest from 'supertest';
 import express, { response } from 'express'
-import HumidityController from '../../../../src/components/humidity/controller/humidityController';
-import HumidityService from '../../../../src/components/humidity/services/HumidityService';
-import MockDb from '../../../../src/infra/db/implementation/mockDb/MockDb';
+import HumidityController from '../../../../components/humidity/controller/humidityController';
+import HumidityService from '../../../../components/humidity/services/HumidityService';
+import MockDb from '../../../../infra/db/implementation/mockDb/MockDb';
 
 const mockDb = new MockDb;
 const mockHumidityService = new HumidityService(mockDb);
