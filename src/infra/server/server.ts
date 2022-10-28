@@ -1,5 +1,4 @@
 import MongoDB from '@db/implementation/mongodb/mongodb';
-import { env } from 'process';
 import application from '../../app';
 import Environment from '../../config/environment';
 
