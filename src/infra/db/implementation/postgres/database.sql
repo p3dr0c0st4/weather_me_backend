@@ -1,15 +1,13 @@
-CREATE DATABASE Weather_me
-
-CREATE TABLE temperature(
-id SERIAL PRIMARY KEY,
-location ,
-date , 
-temperature
+CREATE TABLE temperature(  
+    id int NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    date TIMESTAMP NOT NULL,
+    location VARCHAR (255) UNIQUE NOT NULL,
+    temperature INT NOT NULL
 )
 
 CREATE TABLE humidity(
-id SERIAL PRIMARY KEY,
-location ,
-date , 
-humidity
+    id int NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    location VARCHAR (255) UNIQUE NOT NULL,
+    date TIMESTAMP NOT NULL, 
+    humidity INT NOT NULL
 ) 

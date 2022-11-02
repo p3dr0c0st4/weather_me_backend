@@ -1,15 +1,16 @@
 import ICrudTemperature from '../../../../db/interfaces/ICrudTemperature';
 import { TemperatureDto } from '../../../../../components/temperature/dtos/temperatureDto';
 import {pool} from '../database';
+import { QueryResult } from 'pg';
 
 
 export default class TemperatureRepository implements ICrudTemperature {
 
     //create Row
-    create(data: TemperatureDto): Promise<boolean> {
+    create = async (data: TemperatureDto): Promise<boolean> | never => {
 
-        const temp:Promise<boolean> = pool.query(`INSERT INTO temperature ( temperature, location, date) VALUES (${data.temperature}, ${data.location}, ${data.date})`);
-        return Promise.resolve(temp);
+        const result = await pool.query(`INSERT INTO temperature ( temperature, location, date) VALUES (${data.temperature}, ${data.location}, ${data.date})`);      
+        return result.rowCount === 1;
     };
 
     //Read Row
