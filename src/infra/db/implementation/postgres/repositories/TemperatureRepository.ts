@@ -37,4 +37,14 @@ export default class TemperatureRepository implements ICrudTemperature {
         return await pool.query(`DELETE FROM temperature WHERE id = ${id}`);
 
     };
+    createTable = async() =>{
+       const result = await pool.query(`CREATE TABLE TEMPERATURE (  
+        id int NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+        date TIMESTAMP NOT NULL,
+        location VARCHAR (255) UNIQUE NOT NULL,
+        temperature INT NOT NULL
+    )`);
+    return result.rowCount !== 0;
+
+    }
 };  

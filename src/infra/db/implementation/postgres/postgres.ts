@@ -16,6 +16,7 @@ export default class Postgres implements IDatabase {
     }
 
     init(): void {
-        return;
+        this.temperature.createTable();
+        this.humidity.createTable();
     }
 } 
