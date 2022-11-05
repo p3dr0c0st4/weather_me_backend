@@ -23,8 +23,7 @@ export default class HumidityRepository implements ICrudHumidity {
     //update Row
     async updateById(id: string, data: HumidityDto): Promise<HumidityDto> {
 
-        const newId:number = Number(id);
-        const result = await pool.query<HumidityDto>("UPDATE humidity SET humidity = $1, location = $2, date = to_timestamp($3) WHERE id = $4",[data.humidity,data.location,data.date,newId]);
+        const result = await pool.query<HumidityDto>("UPDATE humidity SET humidity = $1, location = $2, date = to_timestamp($3) WHERE id = $4",[data.humidity,data.location,data.date,id]);
         console.log('update',result);
         return result.rows[0];
 
