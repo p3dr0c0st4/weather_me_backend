@@ -6,34 +6,35 @@ import { pool } from '../database';
 export default class HumidityRepository implements ICrudHumidity {
 
     //create Row
-    create(data: HumidityDto): Promise<boolean> {
+    create = async (data: HumidityDto): Promise<boolean> | never => {
 
-        const temp: Promise<boolean> = pool.query(`INSERT INTO humidity ( humidity, location, date) VALUES (${data.humidity}, ${data.location}, ${data.date})`);
-        return Promise.resolve(temp);
+        const result = await pool.query("INSERT INTO humidity ( humidity, location, date) VALUES ($1, $2, to_timestamp($3))",[data.humidity, data.location, data.date]);
+        return result.rowCount === 1;
 
     };
 
     //read Row
     async read(filter: any): Promise<HumidityDto[]> {
 
-        if (filter) {
-            return await pool.query(`SELECT * FROM WHERE id = ${filter.id}`);
-        };
-
-        return await pool.query(`SELECT * FROM humidity`);
+        const result = await pool.query<HumidityDto>("SELECT * FROM humidity WHERE id = $1",[filter]);
+        return result.rows;
     };
 
     //update Row
     async updateById(id: string, data: HumidityDto): Promise<HumidityDto> {
 
-        return await pool.query(`UPDATE humidity SET humidity = ${data.humidity}, location = ${data.location}, date = ${data.date} WHERE id = ${id}`);
+        const newId:number = Number(id);
+        const result = await pool.query<HumidityDto>("UPDATE humidity SET humidity = $1, location = $2, date = to_timestamp($3) WHERE id = $4",[data.humidity,data.location,data.date,newId]);
+        console.log('update',result);
+        return result.rows[0];
 
     };
 
     //Delete Row
     async deleteById(id: string): Promise<boolean> {
 
-        return await pool.query(`DELETE FROM humidity WHERE id = ${id}`);
+        const result = await pool.query("DELETE FROM humidity WHERE id = $1",[id]);
+        return result.rowCount === 1;
 
     };
 
