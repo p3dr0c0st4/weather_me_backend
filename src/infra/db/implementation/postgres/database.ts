@@ -1,10 +1,13 @@
 import Pool from 'pg';
 
 export const pool = new Pool.Pool({
-    user: 'postgres',
-    database: 'weather_me',
+    user: 'root',
+    database: 'weatherme',
     password: 'weatherme',
     host: 'localhost',
-    port: 5433,
+    port: 5430,
 });
 
+pool.on('connect', () => {
+    console.log('Postgres Connected!');
+  });
