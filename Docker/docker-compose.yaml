@@ -11,6 +11,11 @@ services:
       - ~/apps/mongo:/data/db
   postgres:
     image: postgres
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-q", "-d", "postgres", "-U", "root" ]
+      timeout: 45s
+      interval: 10s
+      retries: 10
     restart: unless-stopped
     ports:
       - 5430:5432
@@ -18,6 +23,15 @@ services:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: weatherme
       POSTGRES_DB: weatherme
+      APP_DB_USER: docker;
+      APP_DB_PASS: docker;
+      APP_DB_NAME: docker;
+    volumes:
+          # - ./db:/docker-entrypoint-initdb.d/
+          # - ./postgres-data:/var/lib/postgresql/data
+          # copy the sql script to create tables
+          - ./db:/docker-entrypoint-initdb.d/
+          
   backend:
     image: weathermebackend:latest 
     restart: unless-stopped
