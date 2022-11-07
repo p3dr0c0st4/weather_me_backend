@@ -17,8 +17,10 @@ export default class Postgres implements IDatabase {
     }
 
     async init(): Promise<void> {
-        this.temperature.createTable();
-        this.humidity.createTable();
+        
+       await this.temperature.createTable();
+       await this.humidity.createTable();
+
         const val: TemperatureDto = {
             date: Date.now(),
             location: 'szgsfg',
