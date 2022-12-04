@@ -26,7 +26,7 @@ class TemperatureRepository implements ICrudTemperature {
     let doc = await temperatureSchema
       .findOneAndUpdate(
         { _id: id },
-        { data },
+        {$set: data },
         {
           new: true,
         }
