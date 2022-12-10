@@ -15,6 +15,17 @@ export default class TemperatureController {
     return res.status(200).json({data:tempArr});
   };
 
+  getTemperatureById = async (req: Request, res: Response, next: NextFunction) => {
+    
+    const id = req.params.id;
+    //Get  docs from DB
+    const temp =
+      await this.temperatureService.readById(id)
+    
+    // //if success return Array of docs
+    return res.status(200).json({data:temp});
+  };
+
   postTemperature = async (req: Request, res: Response, next: NextFunction) => {
     const temp: TemperatureDto = {
       date: req.body.date,
