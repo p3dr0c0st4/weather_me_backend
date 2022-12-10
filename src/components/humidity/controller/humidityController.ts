@@ -15,6 +15,17 @@ export default class HumidityController {
     return res.status(200).json({data:tempArr});
   };
 
+  getHumidityById = async (req: Request, res: Response, next: NextFunction) => {
+    
+    const id = req.params.id;
+    //Get  docs from DB
+    const temp =
+      await this.humidityService.readById(id)
+    
+    // //if success return Array of docs
+    return res.status(200).json({data:temp});
+  };
+
   postHumidity = async (req: Request, res: Response, next: NextFunction) => {
     const temp: HumidityDto = {
       date: req.body.date,
