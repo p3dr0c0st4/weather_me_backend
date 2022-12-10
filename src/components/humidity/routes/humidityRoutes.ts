@@ -4,12 +4,13 @@ import express from 'express';
 
 export default function (humidityService: humidityService) {
   /**
-   * /api/v1/temperature
+   * /api/v1/humidity
    */
   const router = express.Router({ mergeParams: true });
 
   const {
     getHumidity,
+    getHumidityById,
     postHumidity,
     updateHumidity,
     deleteHumidity,
@@ -17,7 +18,7 @@ export default function (humidityService: humidityService) {
 
   router.route('/').get(getHumidity).post(postHumidity);
 
-  router.route('/:id').patch(updateHumidity).delete(deleteHumidity);
+  router.route('/:id').patch(updateHumidity).delete(deleteHumidity).get(getHumidityById);
 
   return router;
 }
