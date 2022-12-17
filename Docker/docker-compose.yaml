@@ -9,6 +9,16 @@ services:
       - 27019:27017
     volumes:
       - ~/apps/mongo:/data/db
+  postgres:
+    image: postgres
+    restart: unless-stopped
+    ports:
+      - 5430:5432
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: weatherme
+      POSTGRES_DB: weatherme
+          
   backend:
     image: weathermebackend:latest 
     restart: unless-stopped

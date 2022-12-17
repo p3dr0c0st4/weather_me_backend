@@ -5,4 +5,5 @@ export default interface ICrudHumidity {
     read(filter: any): Promise<HumidityDto[]>;
     updateById(id: string, data: HumidityDto): Promise<HumidityDto | never>;
     deleteById(id: string): Promise<boolean>;
+    createTable():Promise<boolean>;
 }
