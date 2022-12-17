@@ -12,6 +12,10 @@ export default class TemperatureService {
     return this.db.temperature.read(filter);
   };
 
+  readById = (id: string): Promise<TemperatureDto | null> => {
+    return this.db.temperature.readById(id);
+  };
+
   updateTemperature = (
     id: string,
     update: TemperatureDto

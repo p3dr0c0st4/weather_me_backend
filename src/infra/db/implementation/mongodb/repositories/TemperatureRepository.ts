@@ -19,6 +19,15 @@ class TemperatureRepository implements ICrudTemperature {
     return docs.map((x) => toDto(x));
   }
 
+  async readById(id: string): Promise<TemperatureDto | null> {
+    const docs = await temperatureSchema.findById( id );
+    if(!docs) {
+      return null;
+    }
+    
+    return toDto(docs);
+  }
+
   async updateById(
     id: string,
     data: TemperatureDto

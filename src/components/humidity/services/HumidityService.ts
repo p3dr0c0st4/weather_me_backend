@@ -12,6 +12,10 @@ export default class HumidityService {
     return this.db.humidity.read(filter);
   };
 
+  readById = (id: string): Promise<HumidityDto | null> => {
+    return this.db.humidity.readById(id)
+  }
+
   updateHumidity= (
     id: string,
     update: HumidityDto

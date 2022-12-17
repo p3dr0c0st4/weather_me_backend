@@ -11,13 +11,22 @@ class HumidityRepository implements ICrudHumidity {
       date: data.date,
       humidity: data.humidity,
     });
-
+ 
     return Promise.resolve(temp.save() !== null);
   }
 
   async read(filter: any): Promise<HumidityDto[]> {
     const docs = await humiditySchema.find({ filter });
     return docs.map((x) => toDto(x));
+  }
+
+  async readById(id: string): Promise<HumidityDto | null> {
+    const docs = await humiditySchema.findById( id );
+    if(!docs) {
+      return null;
+    }
+    
+    return toDto(docs);
   }
 
   async updateById(
@@ -27,7 +36,7 @@ class HumidityRepository implements ICrudHumidity {
     let doc = await humiditySchema
       .findOneAndUpdate(
         { _id: id },
-        { data },
+        {$set: data },
         {
           new: true,
         }

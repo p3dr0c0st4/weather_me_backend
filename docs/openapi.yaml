@@ -136,6 +136,28 @@ paths:
                   location: fieldTodelete
                   date: 747578
                   temperature: 80
+      get:
+        summary: get temperature by id 
+        description: fetch temperature data from mongodb
+        operationId: GetTemperatureById
+        security:
+          - basicAuth: []
+        parameters:
+          - in: path 
+            name: id
+            schema:
+              type: string  
+            required: true
+        responses:
+          '200':
+            description: temperature sensor valid response
+            content:
+              application/json:
+                schema:
+                  type: object
+                  $ref: '#/components/schemas/temperature'
+          '401':
+            $ref: '#/components/responses/UnauthorizedError'
 
   /humidity:
       get:
@@ -262,7 +284,28 @@ paths:
                   location: fieldTodelete
                   date: 747578
                   humidity: 80
-  
+      get:
+        summary: get HumidityById 
+        description: fetch humidity data from mongodb
+        operationId: GetHumidityById
+        security:
+          - basicAuth: []
+        parameters:
+          - in: path 
+            name: id
+            schema:
+              type: string  
+            required: true
+        responses:
+          '200':
+            description: humidity sensor valid response
+            content:
+              application/json:
+                schema:
+                  type: object
+                  $ref: '#/components/schemas/humidity'
+          '401':
+            $ref: '#/components/responses/UnauthorizedError'
 
 
 components:

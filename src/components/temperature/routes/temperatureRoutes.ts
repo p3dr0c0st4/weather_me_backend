@@ -10,6 +10,7 @@ export default function (temperatureService: TemperatureService) {
 
   const {
     getTemperature,
+    getTemperatureById,
     postTemperature,
     updateTemperature,
     deleteTemperature,
@@ -17,7 +18,7 @@ export default function (temperatureService: TemperatureService) {
 
   router.route('/').get(getTemperature).post(postTemperature);
 
-  router.route('/:id').patch(updateTemperature).delete(deleteTemperature);
+  router.route('/:id').patch(updateTemperature).delete(deleteTemperature).get(getTemperatureById);
 
   return router;
 }
