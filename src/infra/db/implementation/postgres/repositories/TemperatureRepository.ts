@@ -25,7 +25,6 @@ export default class TemperatureRepository implements ICrudTemperature {
     async updateById(id: string, data: TemperatureDto): Promise<TemperatureDto> {
 
         const result = await pool.query<TemperatureDto>("UPDATE temperature SET temperature = $1, location = $2, date = to_timestamp($3) WHERE id = $4",[data.temperature,data.location,data.date,id]);
-        console.log('update',result)
         return result.rows[0];
     };
 
