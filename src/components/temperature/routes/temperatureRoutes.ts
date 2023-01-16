@@ -1,12 +1,12 @@
-import TemperatureController from '@temperature/controller/TemperatureController';
-import TemperatureService from '../services/TemperatureService';
-import express from 'express';
+import TemperatureController from "@temperature/controller/TemperatureController";
+import TemperatureService from "../services/TemperatureService";
+import { Router } from "express";
 
 export default function (temperatureService: TemperatureService) {
   /**
    * /api/v1/temperature
    */
-  const router = express.Router({ mergeParams: true });
+  const router = Router({ mergeParams: true });
 
   const {
     getTemperature,
@@ -16,9 +16,13 @@ export default function (temperatureService: TemperatureService) {
     deleteTemperature,
   } = new TemperatureController(temperatureService);
 
-  router.route('/').get(getTemperature).post(postTemperature);
+  router.route("/").get(getTemperature).post(postTemperature);
 
-  router.route('/:id').patch(updateTemperature).delete(deleteTemperature).get(getTemperatureById);
+  router
+    .route("/:id")
+    .patch(updateTemperature)
+    .delete(deleteTemperature)
+    .get(getTemperatureById);
 
   return router;
 }
