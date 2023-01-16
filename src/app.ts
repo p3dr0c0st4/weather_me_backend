@@ -10,7 +10,11 @@ const application = async (db: IDatabase) => {
   await db.init();
 
   const app = express();
-  app.use(cors());
+  app.use(
+    cors({
+      origin: "http://localhost:3001",
+    })
+  );
   app.use(express.json());
 
   app.use("/api/v1", routesV1(db));

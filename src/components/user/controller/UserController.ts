@@ -1,4 +1,3 @@
-import * as dotenv from "dotenv";
 import { NextFunction, Response, Request } from "express";
 import jwt from "jsonwebtoken";
 
@@ -20,6 +19,11 @@ export default class UserController {
     }
 
     if (username === "admin" && password === "admin") {
+      res.cookie("jwt_token", "235234234", {
+        httpOnly: true,
+        sameSite: "strict",
+        maxAge: 1000 * 60 * 60 * 24,
+      });
       return res.status(200).json({
         token: signature,
       });
