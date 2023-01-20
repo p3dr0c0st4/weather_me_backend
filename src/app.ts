@@ -13,59 +13,15 @@ const application = async (db: IDatabase) => {
   await db.init();
 
   const app = express();
+  app.use(express.json());
+  
   app.use(
     cors({
       origin: "http://localhost:3001",
       credentials: true
     })
   );
-  app.use(
-    session({
-      secret: process.env.JWT_SECRET as string,
-      cookie: {
-        secure: false,
-        httpOnly: true,
-        sameSite: true,
-        maxAge: 1000 * 60 * 60 * 24
-      },
-      resave: false,
-      saveUninitialized: true
-
-    })
-  )
-
-
-  app.use(express.json());
-  app.use(express.urlencoded({ extended: false }))
-  app.use(cookieParser());
-
-  //----------------------------------------------------------------------------------------------
-  app.post('/testing', (req: Request, res: Response, next: NextFunction) => {
-    const { username, password } = req.body;
-
-    if (username === "testing" && password === "testing") {
-
-      try {
-        let session = req.session
-        if (session) {
-          res.status(201)
-        }
-      }
-      catch (error) {
-        return res.status(401).json({
-          message: "Failed to create session"
-        });
-      }
-
-
-    }
-
-    return res
-      .status(401)
-      .json({ message: "The username and password your provided are invalid" });
-  })
-  //----------------------------------------------------------------------------------------------
-
+  
   app.use("/api/v1", routesV1(db));
   app.get("/ping", (req, res) => {
     res.json({ success: true });
