@@ -18,7 +18,9 @@
       "@server/*": ["./src/infra/server/*"],
       "@db/*": ["./src/infra/db/*"],
       "@temperature/*": ["./src/components/temperature/*"],
-      "@humidity/*":["./src/components/humidity/*"]
+      "@humidity/*":["./src/components/humidity/*"],
+      "@middleware/*":["./src/components/middleware/*"],
+      "@user/*":["./src/components/user/*"]
     }
   }
 }

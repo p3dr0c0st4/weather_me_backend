@@ -6,5 +6,5 @@ export default interface ICrudTemperature {
   readById(id: string): Promise<TemperatureDto | null>;
   updateById(id: string, data: TemperatureDto): Promise<TemperatureDto | never>;
   deleteById(id: string): Promise<boolean>;
-  createTable():Promise<boolean>;
+  createTable(): Promise<boolean>;
 }

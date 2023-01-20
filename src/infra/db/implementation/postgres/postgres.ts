@@ -31,6 +31,5 @@ export default class Postgres implements IDatabase {
             location: 'szgsfg',
             temperature: 321,
         }
-        console.log('read:',await this.temperature.updateById("2",val2));
     }
 } 

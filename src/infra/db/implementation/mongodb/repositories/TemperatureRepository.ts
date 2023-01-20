@@ -1,8 +1,13 @@
-import temperatureSchema, {toDto} from '@db/implementation/mongodb/schemas/temperatureSchema';
-import ICrudTemperature from '@db/interfaces/ICrudTemperature';
-import { TemperatureDto } from '@temperature/dtos/temperatureDto';
+import temperatureSchema, {
+  toDto,
+} from "@db/implementation/mongodb/schemas/temperatureSchema";
+import ICrudTemperature from "@db/interfaces/ICrudTemperature";
+import { TemperatureDto } from "@temperature/dtos/temperatureDto";
 
 class TemperatureRepository implements ICrudTemperature {
+  createTable(): Promise<boolean> {
+    throw new Error("Method not implemented.");
+  }
   create(data: TemperatureDto): Promise<boolean> {
     const temp = new temperatureSchema({
       id: undefined,
@@ -20,11 +25,11 @@ class TemperatureRepository implements ICrudTemperature {
   }
 
   async readById(id: string): Promise<TemperatureDto | null> {
-    const docs = await temperatureSchema.findById( id );
-    if(!docs) {
+    const docs = await temperatureSchema.findById(id);
+    if (!docs) {
       return null;
     }
-    
+
     return toDto(docs);
   }
 
@@ -35,7 +40,7 @@ class TemperatureRepository implements ICrudTemperature {
     let doc = await temperatureSchema
       .findOneAndUpdate(
         { _id: id },
-        {$set: data },
+        { $set: data },
         {
           new: true,
         }
@@ -43,17 +48,15 @@ class TemperatureRepository implements ICrudTemperature {
       .exec();
 
     if (!doc) {
-      throw new Error('Could not update temperature');
+      throw new Error("Could not update temperature");
     }
 
     return toDto(doc);
   }
 
-  async deleteById(id:string): Promise<boolean> {
-
-    const doc:any = await temperatureSchema.findByIdAndDelete(id)
-    return Promise.resolve(doc.deleteOne)
-    
+  async deleteById(id: string): Promise<boolean> {
+    const doc: any = await temperatureSchema.findByIdAndDelete(id);
+    return Promise.resolve(doc.deleteOne);
   }
 }
 export default TemperatureRepository;
