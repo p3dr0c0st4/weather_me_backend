@@ -1,36 +1,30 @@
-import { NextFunction, Response, Request } from "express";
-import jwt from "jsonwebtoken";
+import { NextFunction, Response, Request } from 'express'
 
 export default class UserController {
-  constructor() {}
+    constructor() {}
 
-  postLogin = (req: Request, res: Response, next: NextFunction) => {
-    // const JWT_SECRET = process.env.JWT_SECRET ?? '';
+    postLogin = (req: Request, res: Response, next: NextFunction) => {
+        const { username, password } = req.body
 
-    const { username, password } = req.body;
+        if (username === 'admin' && password === 'admin') {
+            req.session.user = {
+                name: username,
+            }
 
-    let signature = "";
-    try {
-      signature = jwt.sign({ user: "admin" }, process.env.JWT_SECRET as string);
-    } catch (error) {
-      return res.status(401).json({
-        message: "Failed to generate token",
-      });
+            return res.status(200).json('success')
+        }
+
+        return res
+            .status(401)
+            .json({
+                message: 'The username and password your provided are invalid',
+            })
     }
 
-    if (username === "admin" && password === "admin") {
-      res.cookie("jwt_token", "235234234", {
-        httpOnly: true,
-        sameSite: "strict",
-        maxAge: 1000 * 60 * 60 * 24,
-      });
-      return res.status(200).json({
-        token: signature,
-      });
+    logout = (req: Request, res: Response, next: NextFunction) => {
+        if (req.session.user) {
+            delete req.session.user
+        }
+        res.status(204).json('success')
     }
-
-    return res
-      .status(401)
-      .json({ message: "The username and password your provided are invalid" });
-  };
 }
