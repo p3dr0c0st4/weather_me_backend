@@ -1,4 +1,4 @@
-import Pool from 'pg';
+import Pool from 'pg'
 
 export const pool = new Pool.Pool({
     user: 'root',
@@ -6,8 +6,8 @@ export const pool = new Pool.Pool({
     password: 'weatherme',
     host: 'localhost',
     port: 5430,
-});
+})
 
 pool.on('connect', () => {
-    console.log('Postgres Connected!');
-  });
+    console.log('Postgres Connected!')
+})

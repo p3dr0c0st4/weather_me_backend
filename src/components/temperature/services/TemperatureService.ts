@@ -1,30 +1,29 @@
-import { IDatabase } from '@db/interfaces/IDatabase';
-import { TemperatureDto } from '@temperature/dtos/temperatureDto';
+import { IDatabase } from '@db/interfaces/IDatabase'
+import { TemperatureDto } from '@temperature/dtos/temperatureDto'
 
 export default class TemperatureService {
-  constructor(private db: IDatabase) {}
+    constructor(private db: IDatabase) {}
 
-  saveTemperature = (data: TemperatureDto) => {
-    return this.db.temperature.create(data);
-  };
+    saveTemperature = (data: TemperatureDto) => {
+        return this.db.temperature.create(data)
+    }
 
-  readTemperature = (filter?: any): Promise<TemperatureDto[]> => {
-    return this.db.temperature.read(filter);
-  };
+    readTemperature = (filter?: any): Promise<TemperatureDto[]> => {
+        return this.db.temperature.read(filter)
+    }
 
-  readById = (id: string): Promise<TemperatureDto | null> => {
-    return this.db.temperature.readById(id);
-  };
+    readById = (id: string): Promise<TemperatureDto | null> => {
+        return this.db.temperature.readById(id)
+    }
 
-  updateTemperature = (
-    id: string,
-    update: TemperatureDto
-  ): Promise<TemperatureDto | never> => {
-    return this.db.temperature.updateById(id, update);
-  };
+    updateTemperature = (
+        id: string,
+        update: TemperatureDto
+    ): Promise<TemperatureDto | never> => {
+        return this.db.temperature.updateById(id, update)
+    }
 
-  deleteTemperature = (id: string): Promise<boolean> => {
-    return this.db.temperature.deleteById(id);
-  };
+    deleteTemperature = (id: string): Promise<boolean> => {
+        return this.db.temperature.deleteById(id)
+    }
 }
-

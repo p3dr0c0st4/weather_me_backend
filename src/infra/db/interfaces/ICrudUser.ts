@@ -1,6 +1,5 @@
-import { UserDto } from "@user/dtos/userDto";
-
+import { UserDto } from '@user/dtos/userDto'
 
 export default interface ICrudUser {
-    create(data: UserDto): Promise<boolean>;
+    create(data: UserDto): Promise<boolean>
 }

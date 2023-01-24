@@ -1,27 +1,25 @@
 {
-  "exclude": [
-    "**/*.test.ts"
-  ],
-  "compilerOptions": {
-    "target": "ES2016",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
-    "module": "CommonJS",                               /* Specify what module code is generated. */                         /* Disallow 'import's, 'require's or '<reference>'s from expanding the number of files TypeScript should add to a project. */
-    "allowJs": false,                                  /* Allow JavaScript files to be a part of your program. Use the 'checkJS' option to get errors from these files. */
-    "outDir": "./build",                                   /* Specify an output folder for all emitted files. */
-    "esModuleInterop": true,
-    "resolveJsonModule": true,                             /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */
-    "forceConsistentCasingInFileNames": true,            /* Ensure that casing is correct in imports. */
-    "strict": true,                                      /* Enable all strict type-checking options. */
-    "skipLibCheck": true, 
-    "rootDir": "src",   
-    "baseUrl": ".",
-    "paths": {
-      "@server/*": ["./src/infra/server/*"],
-      "@db/*": ["./src/infra/db/*"],
-      "@temperature/*": ["./src/components/temperature/*"],
-      "@humidity/*":["./src/components/humidity/*"],
-      "@middleware/*":["./src/components/middleware/*"],
-      "@user/*":["./src/components/user/*"],
-      "@utils/*":["./src/utils/*"]
+    "exclude": ["**/*.test.ts"],
+    "compilerOptions": {
+        "target": "ES2016" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
+        "module": "CommonJS" /* Specify what module code is generated. */ /* Disallow 'import's, 'require's or '<reference>'s from expanding the number of files TypeScript should add to a project. */,
+        "allowJs": false /* Allow JavaScript files to be a part of your program. Use the 'checkJS' option to get errors from these files. */,
+        "outDir": "./build" /* Specify an output folder for all emitted files. */,
+        "esModuleInterop": true,
+        "resolveJsonModule": true /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */,
+        "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
+        "strict": true /* Enable all strict type-checking options. */,
+        "skipLibCheck": true,
+        "rootDir": "src",
+        "baseUrl": ".",
+        "paths": {
+            "@server/*": ["./src/infra/server/*"],
+            "@db/*": ["./src/infra/db/*"],
+            "@temperature/*": ["./src/components/temperature/*"],
+            "@humidity/*": ["./src/components/humidity/*"],
+            "@middleware/*": ["./src/components/middleware/*"],
+            "@user/*": ["./src/components/user/*"],
+            "@utils/*": ["./src/utils/*"]
+        }
     }
-  }
 }

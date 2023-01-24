@@ -1,24 +1,21 @@
-import config from './config.json';
+import config from './config.json'
 
-    interface IEnvironment {
-        mongoDB: {
-            host:string,
-            port:number
-        },
-        express: {
-            port: number
-        }
+interface IEnvironment {
+    mongoDB: {
+        host: string
+        port: number
     }
-
- class Environment {
-
-    config: IEnvironment 
-
-    constructor(){
-        this.config = config    
+    express: {
+        port: number
     }
-
-
 }
 
-export default new Environment().config;
+class Environment {
+    config: IEnvironment
+
+    constructor() {
+        this.config = config
+    }
+}
+
+export default new Environment().config

@@ -14,11 +14,9 @@ export default class UserController {
             return res.status(200).json('success')
         }
 
-        return res
-            .status(401)
-            .json({
-                message: 'The username and password your provided are invalid',
-            })
+        return res.status(401).json({
+            message: 'The username and password your provided are invalid',
+        })
     }
 
     logout = (req: Request, res: Response, next: NextFunction) => {

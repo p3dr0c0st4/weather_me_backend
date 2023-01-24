@@ -1,6 +1,6 @@
 export type HumidityDto = {
-    id?: string,
-    humidity: number,
-    location: string,
+    id?: string
+    humidity: number
+    location: string
     date: number
 }

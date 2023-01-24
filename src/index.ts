@@ -1,3 +1,3 @@
-import server from '@server/server';
+import server from '@server/server'
 
-server();
+server()
