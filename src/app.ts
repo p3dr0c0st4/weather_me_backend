@@ -1,12 +1,11 @@
 import * as dotenv from "dotenv";
-import express, { NextFunction, Response, Request } from "express";
+import express from "express";
 import routesV1 from "./api/v1";
 import cors from "cors";
 import { IDatabase } from "@db/interfaces/IDatabase";
-import session, { Cookie } from 'express-session'
-import cookieParser from 'cookie-parser'
-
-// import userRoutes from "@user/routes/userRoutes";
+import cookieParser from "cookie-parser";
+import session from "express-session";
+import {randomString} from '@utils/cryptoUtils'
 
 const application = async (db: IDatabase) => {
   //Initialize db
@@ -14,6 +13,7 @@ const application = async (db: IDatabase) => {
 
   const app = express();
   app.use(express.json());
+  app.use(cookieParser())
   
   app.use(
     cors({
@@ -21,6 +21,16 @@ const application = async (db: IDatabase) => {
       credentials: true
     })
   );
+  app.use(session({
+    secret: process.env.SESSION_SECRET as string,
+    resave: false,
+    saveUninitialized: true,
+    unset: 'destroy',
+    name: '_session',
+    genid: (req) => {
+        return randomString()
+    }
+}));
   
   app.use("/api/v1", routesV1(db));
   app.get("/ping", (req, res) => {
