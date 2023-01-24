@@ -20,7 +20,8 @@
       "@temperature/*": ["./src/components/temperature/*"],
       "@humidity/*":["./src/components/humidity/*"],
       "@middleware/*":["./src/components/middleware/*"],
-      "@user/*":["./src/components/user/*"]
+      "@user/*":["./src/components/user/*"],
+      "@utils/*":["./src/utils/*"]
     }
   }
 }
