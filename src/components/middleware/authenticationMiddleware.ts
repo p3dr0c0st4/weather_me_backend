@@ -5,7 +5,6 @@ const verifyJWT = (req: Request, res: Response, next: NextFunction) => {
     const JWT_SECRET = process.env.JWT_SECRET ?? ''
 
     const token = req.headers.authorization
-    console.log(token)
 
     if (!token) {
         return res.status(401).send('Forbidden')
@@ -19,12 +18,12 @@ const verifyJWT = (req: Request, res: Response, next: NextFunction) => {
     next()
 }
 
-const verifyCookieSession = (
+const verifyCookieSession = async (
     req: Request,
     res: Response,
     next: NextFunction
 ) => {
-    const session = req.session.user
+    const session = await req.session.user
 
     if (!session) {
         return res.status(401).send('Forbidden')
