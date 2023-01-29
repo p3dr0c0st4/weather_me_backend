@@ -3,7 +3,7 @@ import { Schema, model, Document } from 'mongoose'
 
 interface IUserSchema extends Document {
     id: string | number
-    name: string
+    username: string
     password: string
     email: string
     role: string
@@ -12,7 +12,7 @@ interface IUserSchema extends Document {
 export const toDto = (obj: IUserSchema): UserDto => {
     return {
         id: obj._id,
-        name: obj.name,
+        username: obj.username,
         password: obj.password,
         email: obj.email,
         role: obj.role,
@@ -21,7 +21,7 @@ export const toDto = (obj: IUserSchema): UserDto => {
 
 const userSchema = new Schema({
     id: { type: Number, require: true },
-    name: { type: String, require: true },
+    username: { type: String, require: true },
     password: { type: String, require: true },
     email: { type: String, require: true },
     role: { type: String, require: true },

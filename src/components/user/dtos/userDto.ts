@@ -1,6 +1,6 @@
 export type UserDto = {
     id?: string | number
-    name: string
+    username: string
     password: string
     email: string
     role: string
