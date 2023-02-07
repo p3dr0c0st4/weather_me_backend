@@ -8,11 +8,14 @@ export default function (userService: UserService) {
      */
 
     const router = Router({ mergeParams: true })
-    const { login, logout, register } = new UserController(userService)
+    const { login, logout, register, sessionCheck } = new UserController(
+        userService
+    )
 
     router.route('/login').post(login)
     router.route('/logout').delete(logout)
     router.route('/register').post(register)
+    router.route('/check').get(sessionCheck)
 
     return router
 }

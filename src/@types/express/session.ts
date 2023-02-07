@@ -1,7 +1,10 @@
 declare namespace Express {
     export interface Request {
         session: {
-            user?: { name: string }
+            user?: {
+                username: string
+                role: string
+            }
         }
     }
 }
