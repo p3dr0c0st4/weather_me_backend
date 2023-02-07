@@ -7,15 +7,16 @@ export default class UserController {
 
     login = async (req: Request, res: Response, next: NextFunction) => {
         const { username, password } = req.body
-        const dbUser = await this.userService.getUser(username)
+        const user = await this.userService.getUser(username)
 
-        if (!dbUser) console.log('user not found')
+        if (!user) console.log('user not found')
 
-        console.log('user email: ' + dbUser?.email)
+        console.log('user role: ' + user?.role)
 
-        if (username === dbUser?.username && password === dbUser?.password) {
+        if (username === user?.username && password === user?.password) {
             req.session.user = {
-                name: username,
+                username: user?.username as string,
+                role: user?.role as string,
             }
 
             return res.status(200).json('success')
@@ -39,7 +40,7 @@ export default class UserController {
                 username: req.body.username,
                 password: req.body.password,
                 email: req.body.email,
-                role: req.body.role,
+                role: (req.body.role as string).toLowerCase(),
             }
 
             const result = await this.userService.createUser(user)
@@ -60,5 +61,14 @@ export default class UserController {
                 message: error,
             })
         }
+    }
+
+    sessionCheck = async (req: Request, res: Response, next: NextFunction) => {
+        const checkUser = req.session.user
+
+        if (checkUser) {
+            return res.status(200).send()
+        }
+        return res.status(401).send('forbidden')
     }
 }
