@@ -18,12 +18,12 @@ const verifyJWT = (req: Request, res: Response, next: NextFunction) => {
     next()
 }
 
-const verifyCookieSession = async (
+const verifyCookieSession = (
     req: Request,
     res: Response,
     next: NextFunction
 ) => {
-    const session = await req.session.user
+    const session = req.session.user
 
     if (!session) {
         return res.status(401).send('Forbidden')
